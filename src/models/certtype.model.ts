@@ -40,6 +40,7 @@ export class Certtype {
       },
   ]];
 }
+// delete a certification type by their id
 deleteCertype(model: any) {
   return async (req: Request, res: Response, next: NextFunction) => {
       let certypeCtrl = model.controller;

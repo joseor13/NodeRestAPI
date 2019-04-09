@@ -48,6 +48,7 @@ export class Userinfo {
       },
   ]];
 }
+// delete a user information by their id
 deleteUserinfo(model: any) {
   return async (req: Request, res: Response, next: NextFunction) => {
       let userinfoCtrl = model.controller;

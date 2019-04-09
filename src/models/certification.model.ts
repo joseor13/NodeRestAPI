@@ -56,6 +56,7 @@ export class Certification {
             },
         ]];
     }
+    // delete a certification by id
     deleteCertification(model: any) {
         return async (req: Request, res: Response, next: NextFunction) => {
             let certificationCtrl = model.controller;

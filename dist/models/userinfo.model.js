@@ -70,6 +70,7 @@ class Userinfo {
             res.json({ message: 'Success', resp });
         });
     }
+    // create a new user
     createUserinfo(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             let userinfoCtrl = model.controller;
@@ -77,6 +78,7 @@ class Userinfo {
             res.json({ message: 'Success', resp });
         });
     }
+    // get all user information
     getAllUserinfo(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
@@ -87,6 +89,7 @@ class Userinfo {
             res.json({ message: 'Success', resp });
         });
     }
+    // get a user information by id
     getUserinfoById(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {

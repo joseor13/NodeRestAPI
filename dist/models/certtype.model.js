@@ -54,6 +54,7 @@ class Certtype {
             res.json({ message: 'Success', resp });
         });
     }
+    // update certifications type
     updateCertype(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             let certypeCtrl = model.controller;

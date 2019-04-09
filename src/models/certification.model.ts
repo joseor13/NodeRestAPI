@@ -63,6 +63,7 @@ export class Certification {
             res.json({ message: 'Success', resp });
         }
     }
+    // update the certifications
     updateCertification(model: any) {
         return async (req: Request, res: Response, next: NextFunction) => {
             let certificationCtrl = model.controller;
@@ -77,7 +78,9 @@ export class Certification {
             res.json({ message: 'Success', resp });
         }
     }
-      
+    
+      //get all the certifications
+ 
     getAllCertification(model: any) {
         return async (req: Request, res: Response, next: NextFunction) => {
             req.body = {
@@ -88,7 +91,8 @@ export class Certification {
             res.json({ message: 'Success', resp });
         }
     }
-   
+   // get all certifications by Id
+
     getCertificationById(model: any) {
         return async (req: Request, res: Response, next: NextFunction) => {
             req.body = {

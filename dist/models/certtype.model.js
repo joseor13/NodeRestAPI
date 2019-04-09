@@ -61,6 +61,7 @@ class Certtype {
             res.json({ message: 'Success', resp });
         });
     }
+    // update the certifications types
     createCertype(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             let certypeCtrl = model.controller;
@@ -68,6 +69,7 @@ class Certtype {
             res.json({ message: 'Success', resp });
         });
     }
+    // get all certifications type
     getAllCertype(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
@@ -78,6 +80,7 @@ class Certtype {
             res.json({ message: 'Success', resp });
         });
     }
+    // get all certifications types bi id
     getCertypeById(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {

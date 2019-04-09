@@ -55,6 +55,7 @@ deleteUserinfo(model: any) {
       res.json({ message: 'Success', resp });
   }
 }
+// update the users information
 updateUserinfo(model: any) {
   return async (req: Request, res: Response, next: NextFunction) => {
       let userinfoCtrl = model.controller;
@@ -62,6 +63,7 @@ updateUserinfo(model: any) {
       res.json({ message: 'Success', resp });
   }
 }
+// create a new user
 createUserinfo(model: any) {
   return async (req: Request, res: Response, next: NextFunction) => {
       let userinfoCtrl = model.controller;
@@ -69,7 +71,7 @@ createUserinfo(model: any) {
       res.json({ message: 'Success', resp });
   }
 }
-
+// get all user information
 getAllUserinfo(model: any) {
   return async (req: Request, res: Response, next: NextFunction) => {
       req.body = {
@@ -80,7 +82,7 @@ getAllUserinfo(model: any) {
       res.json({ message: 'Success', resp });
   }
 }
-
+// get a user information by id
 getUserinfoById(model: any) {
   return async (req: Request, res: Response, next: NextFunction) => {
       req.body = {

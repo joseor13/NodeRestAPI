@@ -62,6 +62,7 @@ class Userinfo {
             res.json({ message: 'Success', resp });
         });
     }
+    // update the users information
     updateUserinfo(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             let userinfoCtrl = model.controller;

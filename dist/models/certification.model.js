@@ -70,6 +70,7 @@ class Certification {
             res.json({ message: 'Success', resp });
         });
     }
+    // update the certifications
     updateCertification(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             let certificationCtrl = model.controller;
@@ -84,6 +85,7 @@ class Certification {
             res.json({ message: 'Success', resp });
         });
     }
+    //get all the certifications
     getAllCertification(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
@@ -94,6 +96,7 @@ class Certification {
             res.json({ message: 'Success', resp });
         });
     }
+    // get all certifications by Id
     getCertificationById(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {

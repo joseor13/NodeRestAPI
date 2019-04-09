@@ -47,6 +47,7 @@ deleteCertype(model: any) {
       res.json({ message: 'Success', resp });
   }
 }
+// update certifications type
 updateCertype(model: any) {
   return async (req: Request, res: Response, next: NextFunction) => {
       let certypeCtrl = model.controller;
@@ -54,6 +55,7 @@ updateCertype(model: any) {
       res.json({ message: 'Success', resp });
   }
 }
+// update the certifications types
 createCertype(model: any) {
   return async (req: Request, res: Response, next: NextFunction) => {
       let certypeCtrl = model.controller;
@@ -62,6 +64,7 @@ createCertype(model: any) {
   }
 }
 
+// get all certifications type
 getAllCertype(model: any) {
   return async (req: Request, res: Response, next: NextFunction) => {
       req.body = {
@@ -72,6 +75,8 @@ getAllCertype(model: any) {
       res.json({ message: 'Success', resp });
   }
 }
+
+// get all certifications types bi id
 
 getCertypeById(model: any) {
   return async (req: Request, res: Response, next: NextFunction) => {

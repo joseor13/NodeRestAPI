@@ -9,6 +9,11 @@ export class Car {
             model: { type: String, maxlength: 24 },
             year: { type: String, maxlength: 24 },
             mileage: { type: String, maxlength: 24 },
+            color: { type: String, maxlength: 24 },
+            image_url: { type: String, maxlength: 1000 },
+            description: { type: String, maxlength: 2000 },
+            price: { type: Number },
+            quantity: { type: Number },
             user_id: {
                 type: Number,
                 key: 'foreign',
@@ -29,8 +34,52 @@ export class Car {
                 method: 'POST',
                 callback: this.getCarById,
                 requireToken: true,
-            }
+            },
+            {
+              route: '/create-car',
+              method: 'POST',
+              callback: this.createCar,
+              requireToken: true,
+          }, 
+          {
+            route: '/update-car-id/:id',
+            method: 'PUT',
+            callback: this.updateCar,
+            requireToken: true,
+        },
+        {
+            route: '/delete-car-id/:id',
+            method: 'DELETE',
+            callback: this.deleteCar,
+            requireToken: true,
+        },
+        
+          
         ]];
+    }
+    deleteCar(model: any) {
+        return async (req: Request, res: Response, next: NextFunction) => {
+            console.log('req.body===>', req.body)
+            let carCtrl = model.controller;
+            let resp = await carCtrl.remove(req, null, null);
+            res.json({ message: 'Success', resp });
+        }
+    }
+    updateCar(model: any) {
+        return async (req: Request, res: Response, next: NextFunction) => {
+            console.log('req.body===>', req.body)
+            let carCtrl = model.controller;
+            let resp = await carCtrl.update(req, null, null);
+            res.json({ message: 'Success', resp });
+        }
+    }
+    createCar(model: any) {
+        return async (req: Request, res: Response, next: NextFunction) => {
+            console.log('req.body===>', req.body)
+            let carCtrl = model.controller;
+            let resp = await carCtrl.insert(req, null, null);
+            res.json({ message: 'Success', resp });
+        }
     }
 
     getAllCars(model: any) {

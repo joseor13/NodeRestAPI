@@ -8,95 +8,91 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Car {
+class Bookmark {
     constructor(norm) {
         this.model = [{
                 id: { type: Number, key: 'primary' },
-                make: { type: String, maxlength: 24 },
-                model: { type: String, maxlength: 24 },
-                year: { type: String, maxlength: 24 },
-                mileage: { type: String, maxlength: 24 },
-                color: { type: String, maxlength: 24 },
-                image_url: { type: String, maxlength: 1000 },
-                description: { type: String, maxlength: 2000 },
-                price: { type: Number },
-                quantity: { type: Number },
-                user_id: {
+                bookmark_name: { type: String, maxlenght: 1000 },
+                bookmark_date: { type: Date },
+                certification_id: {
                     type: Number,
                     key: 'foreign',
-                    references: { table: 'User', foreignKey: 'id' },
+                    references: { table: 'Certification', foreignKey: 'id' },
                     onDelete: 'cascade',
                     onUpdate: 'cascade'
                 },
-            }, 'A table to store car info',
-            [
+                userinfo_id: {
+                    type: Number,
+                    key: 'foreign',
+                    references: { table: 'Userinfo', foreignKey: 'id' },
+                    onDelete: 'cascade',
+                    onUpdate: 'cascade'
+                },
+            }, 'A table to store bookmark model', [
                 {
-                    route: '/get-all-cars',
+                    route: '/get-all-bookmark',
                     method: 'POST',
-                    callback: this.getAllCars,
+                    callback: this.getAllBookmark,
                     requireToken: true,
                 },
                 {
-                    route: '/get-car-by-id/:id',
+                    route: '/get-bookmark-by-id/:id',
                     method: 'POST',
-                    callback: this.getCarById,
+                    callback: this.getBookmarkById,
                     requireToken: true,
                 },
                 {
-                    route: '/create-car',
+                    route: '/create-bookmark',
                     method: 'POST',
-                    callback: this.createCar,
+                    callback: this.createBookmark,
                     requireToken: true,
                 },
                 {
-                    route: '/update-car-id/:id',
+                    route: '/update-bookmark-id/:id',
                     method: 'PUT',
-                    callback: this.updateCar,
+                    callback: this.updateBookmark,
                     requireToken: true,
                 },
                 {
-                    route: '/delete-car-id/:id',
+                    route: '/delete-bookmark-id/:id',
                     method: 'DELETE',
-                    callback: this.deleteCar,
+                    callback: this.deleteBookmark,
                     requireToken: true,
                 },
             ]];
     }
-    deleteCar(model) {
+    deleteBookmark(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.remove(req, null, null);
+            let bookmarkCtrl = model.controller;
+            let resp = yield bookmarkCtrl.remove(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    updateCar(model) {
+    updateBookmark(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.update(req, null, null);
+            let bookmarkCtrl = model.controller;
+            let resp = yield bookmarkCtrl.update(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    createCar(model) {
+    createBookmark(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.insert(req, null, null);
+            let bookmarkCtrl = model.controller;
+            let resp = yield bookmarkCtrl.insert(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getAllCars(model) {
+    getAllBookmark(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*']
             };
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.get(req, null, null);
+            let bookmarkCtrl = model.controller;
+            let resp = yield bookmarkCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getCarById(model) {
+    getBookmarkById(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*'],
@@ -104,8 +100,8 @@ class Car {
                     id: req.params.id
                 }
             };
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.get(req, null, null);
+            let bookmarkCtrl = model.controller;
+            let resp = yield bookmarkCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
@@ -116,4 +112,4 @@ class Car {
         return this._model;
     }
 }
-exports.Car = Car;
+exports.Bookmark = Bookmark;

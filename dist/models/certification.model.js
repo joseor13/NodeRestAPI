@@ -8,95 +8,93 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Car {
+class Certification {
     constructor(norm) {
         this.model = [{
                 id: { type: Number, key: 'primary' },
-                make: { type: String, maxlength: 24 },
-                model: { type: String, maxlength: 24 },
-                year: { type: String, maxlength: 24 },
-                mileage: { type: String, maxlength: 24 },
-                color: { type: String, maxlength: 24 },
-                image_url: { type: String, maxlength: 1000 },
-                description: { type: String, maxlength: 2000 },
-                price: { type: Number },
-                quantity: { type: Number },
-                user_id: {
+                cert_name: { type: String, maxlength: 500 },
+                description: { type: String, maxlength: 1000 },
+                validity: { type: String, maxlength: 24 },
+                resources_id: {
                     type: Number,
                     key: 'foreign',
-                    references: { table: 'User', foreignKey: 'id' },
+                    references: { table: 'Resources', foreignKey: 'id' },
                     onDelete: 'cascade',
                     onUpdate: 'cascade'
                 },
-            }, 'A table to store car info',
+                certtype_id: {
+                    type: Number,
+                    key: 'foreign',
+                    references: { table: 'Certtype', foreignKey: 'id' },
+                    onDelete: 'cascade',
+                    onUpdate: 'cascade'
+                },
+            }, 'A table to store certification model',
             [
                 {
-                    route: '/get-all-cars',
+                    route: '/get-all-certification',
                     method: 'POST',
-                    callback: this.getAllCars,
+                    callback: this.getAllCertification,
                     requireToken: true,
                 },
                 {
-                    route: '/get-car-by-id/:id',
+                    route: '/get-certification-by-id/:id',
                     method: 'POST',
-                    callback: this.getCarById,
+                    callback: this.getCertificationById,
                     requireToken: true,
                 },
                 {
-                    route: '/create-car',
+                    route: '/create-certification',
                     method: 'POST',
-                    callback: this.createCar,
+                    callback: this.createCertification,
                     requireToken: true,
                 },
                 {
-                    route: '/update-car-id/:id',
+                    route: '/update-certification-id/:id',
                     method: 'PUT',
-                    callback: this.updateCar,
+                    callback: this.updateCertification,
                     requireToken: true,
                 },
                 {
-                    route: '/delete-car-id/:id',
+                    route: '/delete-certification-id/:id',
                     method: 'DELETE',
-                    callback: this.deleteCar,
+                    callback: this.deleteCertification,
                     requireToken: true,
                 },
             ]];
     }
-    deleteCar(model) {
+    deleteCertification(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.remove(req, null, null);
+            let certificationCtrl = model.controller;
+            let resp = yield certificationCtrl.remove(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    updateCar(model) {
+    updateCertification(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.update(req, null, null);
+            let certificationCtrl = model.controller;
+            let resp = yield certificationCtrl.update(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    createCar(model) {
+    createCertification(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.insert(req, null, null);
+            let certificationCtrl = model.controller;
+            let resp = yield certificationCtrl.insert(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getAllCars(model) {
+    getAllCertification(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*']
             };
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.get(req, null, null);
+            let certificationCtrl = model.controller;
+            let resp = yield certificationCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getCarById(model) {
+    getCertificationById(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*'],
@@ -104,8 +102,8 @@ class Car {
                     id: req.params.id
                 }
             };
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.get(req, null, null);
+            let certificationCtrl = model.controller;
+            let resp = yield certificationCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
@@ -116,4 +114,4 @@ class Car {
         return this._model;
     }
 }
-exports.Car = Car;
+exports.Certification = Certification;

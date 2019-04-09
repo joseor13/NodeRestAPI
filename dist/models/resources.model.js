@@ -8,95 +8,77 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Car {
+class Resources {
     constructor(norm) {
         this.model = [{
                 id: { type: Number, key: 'primary' },
-                make: { type: String, maxlength: 24 },
-                model: { type: String, maxlength: 24 },
-                year: { type: String, maxlength: 24 },
-                mileage: { type: String, maxlength: 24 },
-                color: { type: String, maxlength: 24 },
-                image_url: { type: String, maxlength: 1000 },
-                description: { type: String, maxlength: 2000 },
-                price: { type: Number },
-                quantity: { type: Number },
-                user_id: {
-                    type: Number,
-                    key: 'foreign',
-                    references: { table: 'User', foreignKey: 'id' },
-                    onDelete: 'cascade',
-                    onUpdate: 'cascade'
-                },
-            }, 'A table to store car info',
-            [
+                resource_name: { type: String, maxlength: 100 },
+                resource_link: { type: String, maxlength: 500 },
+            }, 'A table to store sources model', [
                 {
-                    route: '/get-all-cars',
+                    route: '/get-all-resource',
                     method: 'POST',
-                    callback: this.getAllCars,
+                    callback: this.getAllResource,
                     requireToken: true,
                 },
                 {
-                    route: '/get-car-by-id/:id',
+                    route: '/get-resource-by-id/:id',
                     method: 'POST',
-                    callback: this.getCarById,
+                    callback: this.getResourceById,
                     requireToken: true,
                 },
                 {
-                    route: '/create-car',
+                    route: '/create-resource',
                     method: 'POST',
-                    callback: this.createCar,
+                    callback: this.createResource,
                     requireToken: true,
                 },
                 {
-                    route: '/update-car-id/:id',
+                    route: '/update-resource-id/:id',
                     method: 'PUT',
-                    callback: this.updateCar,
+                    callback: this.updateResource,
                     requireToken: true,
                 },
                 {
-                    route: '/delete-car-id/:id',
+                    route: '/delete-resource-id/:id',
                     method: 'DELETE',
-                    callback: this.deleteCar,
+                    callback: this.deleteResource,
                     requireToken: true,
                 },
             ]];
     }
-    deleteCar(model) {
+    deleteResource(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.remove(req, null, null);
+            let resourceCtrl = model.controller;
+            let resp = yield resourceCtrl.remove(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    updateCar(model) {
+    updateResource(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.update(req, null, null);
+            let resourceCtrl = model.controller;
+            let resp = yield resourceCtrl.update(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    createCar(model) {
+    createResource(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.insert(req, null, null);
+            let resourceCtrl = model.controller;
+            let resp = yield resourceCtrl.insert(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getAllCars(model) {
+    getAllResource(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*']
             };
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.get(req, null, null);
+            let resourceCtrl = model.controller;
+            let resp = yield resourceCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getCarById(model) {
+    getResourceById(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*'],
@@ -104,8 +86,8 @@ class Car {
                     id: req.params.id
                 }
             };
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.get(req, null, null);
+            let resourceCtrl = model.controller;
+            let resp = yield resourceCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
@@ -116,4 +98,4 @@ class Car {
         return this._model;
     }
 }
-exports.Car = Car;
+exports.Resources = Resources;

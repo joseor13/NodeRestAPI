@@ -8,95 +8,90 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Car {
+class Earnedcert {
     constructor(norm) {
         this.model = [{
                 id: { type: Number, key: 'primary' },
-                make: { type: String, maxlength: 24 },
-                model: { type: String, maxlength: 24 },
-                year: { type: String, maxlength: 24 },
-                mileage: { type: String, maxlength: 24 },
-                color: { type: String, maxlength: 24 },
-                image_url: { type: String, maxlength: 1000 },
-                description: { type: String, maxlength: 2000 },
-                price: { type: Number },
-                quantity: { type: Number },
-                user_id: {
+                certification_id: {
                     type: Number,
                     key: 'foreign',
-                    references: { table: 'User', foreignKey: 'id' },
+                    references: { table: 'Certification', foreignKey: 'id' },
                     onDelete: 'cascade',
                     onUpdate: 'cascade'
                 },
-            }, 'A table to store car info',
+                userinfo_id: {
+                    type: Number,
+                    key: 'foreign',
+                    references: { table: 'Userinfo', foreignKey: 'id' },
+                    onDelete: 'cascade',
+                    onUpdate: 'cascade'
+                },
+            }, 'A table to store earned certifications model',
             [
                 {
-                    route: '/get-all-cars',
+                    route: '/get-all-earnedcert',
                     method: 'POST',
-                    callback: this.getAllCars,
+                    callback: this.getAllEarnedcert,
                     requireToken: true,
                 },
                 {
-                    route: '/get-car-by-id/:id',
+                    route: '/get-earnedcert-by-id/:id',
                     method: 'POST',
-                    callback: this.getCarById,
+                    callback: this.getEarnedcertById,
                     requireToken: true,
                 },
                 {
-                    route: '/create-car',
+                    route: '/create-earnedcert',
                     method: 'POST',
-                    callback: this.createCar,
+                    callback: this.createEarnedcert,
                     requireToken: true,
                 },
                 {
-                    route: '/update-car-id/:id',
+                    route: '/update-earnedcert-id/:id',
                     method: 'PUT',
-                    callback: this.updateCar,
+                    callback: this.updateEarnedcert,
                     requireToken: true,
                 },
                 {
-                    route: '/delete-car-id/:id',
+                    route: '/delete-earnedcert-id/:id',
                     method: 'DELETE',
-                    callback: this.deleteCar,
+                    callback: this.deleteEarnedcert,
                     requireToken: true,
                 },
             ]];
     }
-    deleteCar(model) {
+    deleteEarnedcert(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.remove(req, null, null);
+            let earnedcertCtrl = model.controller;
+            let resp = yield earnedcertCtrl.remove(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    updateCar(model) {
+    updateEarnedcert(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.update(req, null, null);
+            let earnedcertCtrl = model.controller;
+            let resp = yield earnedcertCtrl.update(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    createCar(model) {
+    createEarnedcert(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.insert(req, null, null);
+            let earnedcertCtrl = model.controller;
+            let resp = yield earnedcertCtrl.insert(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getAllCars(model) {
+    getAllEarnedcert(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*']
             };
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.get(req, null, null);
+            let earnedcertCtrl = model.controller;
+            let resp = yield earnedcertCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getCarById(model) {
+    getEarnedcertById(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*'],
@@ -104,8 +99,8 @@ class Car {
                     id: req.params.id
                 }
             };
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.get(req, null, null);
+            let earnedcertCtrl = model.controller;
+            let resp = yield earnedcertCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
@@ -116,4 +111,4 @@ class Car {
         return this._model;
     }
 }
-exports.Car = Car;
+exports.Earnedcert = Earnedcert;

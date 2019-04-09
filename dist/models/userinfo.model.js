@@ -8,95 +8,85 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Car {
+class Userinfo {
     constructor(norm) {
         this.model = [{
                 id: { type: Number, key: 'primary' },
-                make: { type: String, maxlength: 24 },
-                model: { type: String, maxlength: 24 },
-                year: { type: String, maxlength: 24 },
-                mileage: { type: String, maxlength: 24 },
-                color: { type: String, maxlength: 24 },
-                image_url: { type: String, maxlength: 1000 },
-                description: { type: String, maxlength: 2000 },
-                price: { type: Number },
-                quantity: { type: Number },
-                user_id: {
-                    type: Number,
-                    key: 'foreign',
-                    references: { table: 'User', foreignKey: 'id' },
-                    onDelete: 'cascade',
-                    onUpdate: 'cascade'
-                },
-            }, 'A table to store car info',
-            [
+                first_name: { type: String, maxlength: 100 },
+                last_name: { type: String, maxlength: 100 },
+                email: { type: String, maxlength: 100 },
+                password: { type: String, maxlength: 1000 },
+                city: { type: String, maxlength: 100 },
+                job: { type: String, maxlength: 100 },
+                experience: { type: String, maxlength: 1000 },
+                education: { type: String, maxlength: 1000 },
+                industry: { type: String, maxlength: 1000 },
+                interests: { type: String, maxlength: 1000 },
+            }, 'A table to store users information model', [
                 {
-                    route: '/get-all-cars',
+                    route: '/get-all-userinfo',
                     method: 'POST',
-                    callback: this.getAllCars,
+                    callback: this.getAllUserinfo,
                     requireToken: true,
                 },
                 {
-                    route: '/get-car-by-id/:id',
+                    route: '/get-userinfo-by-id/:id',
                     method: 'POST',
-                    callback: this.getCarById,
+                    callback: this.getUserinfoById,
                     requireToken: true,
                 },
                 {
-                    route: '/create-car',
+                    route: '/create-userinfo',
                     method: 'POST',
-                    callback: this.createCar,
+                    callback: this.createUserinfo,
                     requireToken: true,
                 },
                 {
-                    route: '/update-car-id/:id',
+                    route: '/update-userinfo-id/:id',
                     method: 'PUT',
-                    callback: this.updateCar,
+                    callback: this.updateUserinfo,
                     requireToken: true,
                 },
                 {
-                    route: '/delete-car-id/:id',
+                    route: '/delete-userinfo-id/:id',
                     method: 'DELETE',
-                    callback: this.deleteCar,
+                    callback: this.deleteUserinfo,
                     requireToken: true,
                 },
             ]];
     }
-    deleteCar(model) {
+    deleteUserinfo(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.remove(req, null, null);
+            let userinfoCtrl = model.controller;
+            let resp = yield userinfoCtrl.remove(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    updateCar(model) {
+    updateUserinfo(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.update(req, null, null);
+            let userinfoCtrl = model.controller;
+            let resp = yield userinfoCtrl.update(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    createCar(model) {
+    createUserinfo(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.insert(req, null, null);
+            let userinfoCtrl = model.controller;
+            let resp = yield userinfoCtrl.insert(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getAllCars(model) {
+    getAllUserinfo(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*']
             };
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.get(req, null, null);
+            let userinfoCtrl = model.controller;
+            let resp = yield userinfoCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getCarById(model) {
+    getUserinfoById(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*'],
@@ -104,8 +94,8 @@ class Car {
                     id: req.params.id
                 }
             };
-            let carCtrl = model.controller;
-            let resp = yield carCtrl.get(req, null, null);
+            let userinfoCtrl = model.controller;
+            let resp = yield userinfoCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
@@ -116,4 +106,4 @@ class Car {
         return this._model;
     }
 }
-exports.Car = Car;
+exports.Userinfo = Userinfo;

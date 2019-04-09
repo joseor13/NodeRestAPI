@@ -77,7 +77,7 @@ export class Certification {
             res.json({ message: 'Success', resp });
         }
     }
-
+      
     getAllCertification(model: any) {
         return async (req: Request, res: Response, next: NextFunction) => {
             req.body = {
@@ -88,7 +88,7 @@ export class Certification {
             res.json({ message: 'Success', resp });
         }
     }
-
+   
     getCertificationById(model: any) {
         return async (req: Request, res: Response, next: NextFunction) => {
             req.body = {

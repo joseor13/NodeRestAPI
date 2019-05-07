@@ -5,7 +5,7 @@ export class Bookmark {
     constructor(norm: any) {
       this.model = [{
         id: { type: Number, key: 'primary' },
-        bookmark_name: { type: String, maxlenght: 1000 },
+        bookmark_name: { type: String, maxlength: 2000 },
         bookmark_date: { type: Date},
         certification_id: {
           type: Number,

@@ -7,3 +7,4 @@ export * from './certtype.model';
 export * from './certification.model';
 export * from './earnedcert.model';
 export * from './bookmark.model';
+export * from './nursery.model';

@@ -47,6 +47,7 @@ class Certtype {
                 },
             ]];
     }
+    // delete a certification type by their id
     deleteCertype(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             let certypeCtrl = model.controller;

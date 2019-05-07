@@ -63,6 +63,7 @@ class Certification {
                 },
             ]];
     }
+    // delete a certification by id
     deleteCertification(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             let certificationCtrl = model.controller;

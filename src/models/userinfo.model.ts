@@ -5,6 +5,7 @@ export class Userinfo {
     constructor(norm: any) {
       this.model = [{
         id: { type: Number, key: 'primary' },
+        image_url: { type: String, maxlength: 10000 },
         first_name: { type: String, maxlength: 100 },
         last_name: { type: String, maxlength: 100 },
         email: { type: String, maxlength: 100 },
@@ -12,10 +13,19 @@ export class Userinfo {
         city: { type: String, maxlength: 100 },
         job: { type: String, maxlength: 100 },
         experience: { type: String, maxlength: 1000 },
+        certifications: { type: String, maxlength: 1000 },
         education: { type: String, maxlength: 1000 },
         industry: { type: String, maxlength: 1000 },
         interests: { type: String, maxlength: 1000 },
-      }, 'A table to store users information model', [
+        user_id: {
+          type: Number,
+          key: 'foreign',
+          references: { table: 'User', foreignKey: 'id' },
+          onDelete: 'cascade',
+          onUpdate: 'cascade'
+          },
+      }, 'A table to store users information model', 
+      [
         {
           route: '/get-all-userinfo',
           method: 'POST',

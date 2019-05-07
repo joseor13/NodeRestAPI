@@ -8,91 +8,85 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Bookmark {
+class Nursery {
     constructor(norm) {
         this.model = [{
                 id: { type: Number, key: 'primary' },
-                bookmark_name: { type: String, maxlength: 2000 },
-                bookmark_date: { type: Date },
-                certification_id: {
-                    type: Number,
-                    key: 'foreign',
-                    references: { table: 'Certification', foreignKey: 'id' },
-                    onDelete: 'cascade',
-                    onUpdate: 'cascade'
-                },
-                userinfo_id: {
-                    type: Number,
-                    key: 'foreign',
-                    references: { table: 'Userinfo', foreignKey: 'id' },
-                    onDelete: 'cascade',
-                    onUpdate: 'cascade'
-                },
-            }, 'A table to store bookmark model', [
+                plant: { type: String, maxlength: 500 },
+                color: { type: String, maxlength: 200 },
+                image_url: { type: String, maxlength: 1000 },
+                description: { type: String, maxlength: 2000 },
+                price: { type: Number },
+                quantity: { type: Number },
+            }, 'A table to store car info',
+            [
                 {
-                    route: '/get-all-bookmark',
+                    route: '/get-all-plants',
                     method: 'POST',
-                    callback: this.getAllBookmark,
+                    callback: this.getAllPlants,
                     requireToken: true,
                 },
                 {
-                    route: '/get-bookmark-by-id/:id',
+                    route: '/get-plant-by-id/:id',
                     method: 'POST',
-                    callback: this.getBookmarkById,
+                    callback: this.getPlantById,
                     requireToken: true,
                 },
                 {
-                    route: '/create-bookmark',
+                    route: '/create-Plant',
                     method: 'POST',
-                    callback: this.createBookmark,
+                    callback: this.createPlant,
                     requireToken: true,
                 },
                 {
-                    route: '/update-bookmark-id/:id',
+                    route: '/update-plant-id/:id',
                     method: 'PUT',
-                    callback: this.updateBookmark,
+                    callback: this.updatePlant,
                     requireToken: true,
                 },
                 {
-                    route: '/delete-bookmark-id/:id',
+                    route: '/delete-plant-id/:id',
                     method: 'DELETE',
-                    callback: this.deleteBookmark,
+                    callback: this.deletePlant,
                     requireToken: true,
                 },
             ]];
     }
-    deleteBookmark(model) {
+    deletePlant(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            let bookmarkCtrl = model.controller;
-            let resp = yield bookmarkCtrl.remove(req, null, null);
+            console.log('req.body===>', req.body);
+            let plantCtrl = model.controller;
+            let resp = yield plantCtrl.remove(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    updateBookmark(model) {
+    updatePlant(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            let bookmarkCtrl = model.controller;
-            let resp = yield bookmarkCtrl.update(req, null, null);
+            console.log('req.body===>', req.body);
+            let plantCtrl = model.controller;
+            let resp = yield plantCtrl.update(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    createBookmark(model) {
+    createPlant(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            let bookmarkCtrl = model.controller;
-            let resp = yield bookmarkCtrl.insert(req, null, null);
+            console.log('req.body===>', req.body);
+            let plantCtrl = model.controller;
+            let resp = yield plantCtrl.insert(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getAllBookmark(model) {
+    getAllPlants(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*']
             };
-            let bookmarkCtrl = model.controller;
-            let resp = yield bookmarkCtrl.get(req, null, null);
+            let plantCtrl = model.controller;
+            let resp = yield plantCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
-    getBookmarkById(model) {
+    getPlantById(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*'],
@@ -100,8 +94,8 @@ class Bookmark {
                     id: req.params.id
                 }
             };
-            let bookmarkCtrl = model.controller;
-            let resp = yield bookmarkCtrl.get(req, null, null);
+            let plantCtrl = model.controller;
+            let resp = yield plantCtrl.get(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
@@ -112,4 +106,4 @@ class Bookmark {
         return this._model;
     }
 }
-exports.Bookmark = Bookmark;
+exports.Nursery = Nursery;

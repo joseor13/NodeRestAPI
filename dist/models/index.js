@@ -12,3 +12,4 @@ __export(require("./certtype.model"));
 __export(require("./certification.model"));
 __export(require("./earnedcert.model"));
 __export(require("./bookmark.model"));
+__export(require("./nursery.model"));

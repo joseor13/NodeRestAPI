@@ -8,8 +8,6 @@ export class Userinfo {
         image_url: { type: String, maxlength: 10000 },
         first_name: { type: String, maxlength: 100 },
         last_name: { type: String, maxlength: 100 },
-        email: { type: String, maxlength: 100 },
-        password: { type: String, maxlength: 1000 },
         city: { type: String, maxlength: 100 },
         job: { type: String, maxlength: 100 },
         experience: { type: String, maxlength: 1000 },
